@@ -9,6 +9,7 @@ Page({
   data: {
     list: [],
     descAdd: null,
+    currentIndex: -1
   },
 
   /**
@@ -63,12 +64,34 @@ Page({
   onChange() {
 
   },
+  // 删除 删除来源下标
+  delete(index, foucusNext=-1) {
+
+  },
+  // 非输入框 失焦
+  blur(e) {
+    console.log('type: blur', e)
+    this.currentIndex = -1
+    if(e.detail.value === '') { 
+      // 触发更新list 删除文本
+      const list = [...this.data.list]
+      console.log(list[e.target.dataset.index].src)
+      if(list[e.target.dataset.index].src) list[e.target.dataset.index].text = null
+      else list.splice(e.target.dataset.index, 1)
+      this.setData({ list })
+    }
+  },
   // 点击完成
   finish() {
 
   },
   // 增加text
   inputAdd(e) {
+    console.log(e.detail)
+    if(this.data.descAdd === '' && e.detail.code === 8 && this.list.length > 0) { // 删除
+      this.delete(this.list.length, this.list.length - 1)
+      return ;
+    }
     this.setData({
       descAdd: e.detail.value
     })
@@ -76,8 +99,6 @@ Page({
   // 插入图片
   async addImage() {
     let res = await img.choose()
-    console.log(this.data.list)
-    console.log('choose', res)
     let compressUrl = res && await img.compress(res[0].path)
     // 无论是否压缩成功都会有路径，取消的时候为null
     if(compressUrl) {
