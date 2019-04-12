@@ -79,14 +79,17 @@ Page({
     console.log(this.data.list)
     console.log('choose', res)
     let compressUrl = res && await img.compress(res[0].path)
-    this.setData({
-      list: this.data.list.concat({
-        src: compressUrl,
-        text: this.data.descAdd
-      }),
-      // 重置输入框
-      descAdd: ''
-    })
+    // 无论是否压缩成功都会有路径，取消的时候为null
+    if(compressUrl) {
+      this.setData({
+        list: this.data.list.concat({
+          src: compressUrl,
+          text: this.data.descAdd
+        }),
+        // 重置输入框
+        descAdd: ''
+      })
+    }
   }
 
 })
