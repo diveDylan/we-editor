@@ -1,0 +1,103 @@
+/* src/pages/editor/index.wxss */
+page, .page-contain {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.editor-contain {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  bottom: 176rpx;
+  top: 0;
+  padding: 10rpx 30rpx;
+  background: #fff;
+  overflow: scroll;
+}
+
+.editor-item {
+  overflow: hidden;
+  margin: 20rpx auto;
+}
+.editor-contain .editor-item image {
+  width: 690rpx;
+  height: auto;
+  display: block;
+  margin: 8rpx auto;
+  position: relative;
+}
+.editor-contain textarea {
+  z-index: 1;
+  font-size: 14px;
+  line-height: 40rpx;
+}
+
+.editor-contain .base-textarea {
+  width: 100%;
+  height: 400rpx
+}
+
+.finish {
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.add-image, .add-image-textarea {
+  position: fixed;
+  bottom: 188rpx;
+  right: 40rpx;
+  width: 240rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  z-index: 99;
+}
+
+.add-image .cover-image {
+  width: 240rpx;
+  height: 64rpx;
+  position: relative;
+}
+
+.placeholder {
+  color: #B6C0CC 
+}
+
+.close-contain {
+  border: 4rpx dashed #D8D8D8;
+  width: 100%;
+  height: auto;
+  margin-top: 8rpx;
+  position: relative;
+}
+.close {
+  width: 20rpx;
+  height: 20rpx;
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+}
+
+.cover-finish {
+  height: 160rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  z-index: 9999;
+}
+.finish-button {
+  width: 720rpx;
+  height: 84rpx;
+  border-color: transparent;
+  background: #62626B;
+  color: #fff;
+}
