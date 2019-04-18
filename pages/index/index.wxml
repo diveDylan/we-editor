@@ -3,8 +3,8 @@
   <view class="editor-contain" >
     <view class="editor-item" wx:for="{{list}}" wx:key="{{index}}" >
       <textarea
-       focus='{{currentInput == index}}'
-       wx:if="{{currentInput == index || item.text}}"
+       focus='{{currentIndex == index}}'
+       wx:if="{{currentIndex == index || item.text}}"
        auto-height 
        data-index="{{index}}" 
        value="{{item.text}}" 

@@ -65,18 +65,33 @@ Page({
 
   },
   // 删除 删除来源下标
-  delete(index, foucusNext=-1) {
+  delete(index) {
+    let list = this.data.list
+    let preIndex = index - 1
+    console.log('current:',this.data.currentIndex,'pre:', preIndex, 'listPre:', list[preIndex])
+    if(!list[preIndex].src && list[preIndex].text) {
+      this.setData({
+        currentIndex: preIndex
+      })
+    }else {
+      list[preIndex].src = null
+      this.setData({
+        list
+      })
+    }
 
   },
   // 非输入框 失焦
   blur(e) {
     console.log('type: blur', e)
-    this.currentIndex = -1
+    // this.currentIndex = -1
     if(e.detail.value === '') { 
       // 触发更新list 删除文本
       const list = [...this.data.list]
       console.log(list[e.target.dataset.index].src)
+      // 有图片文本为null
       if(list[e.target.dataset.index].src) list[e.target.dataset.index].text = null
+      // 无图删除这一项
       else list.splice(e.target.dataset.index, 1)
       this.setData({ list })
     }
@@ -88,8 +103,9 @@ Page({
   // 增加text
   inputAdd(e) {
     console.log(e.detail)
-    if(this.data.descAdd === '' && e.detail.code === 8 && this.list.length > 0) { // 删除
-      this.delete(this.list.length, this.list.length - 1)
+    // keycode === 8并且输入已为空的情况触发删除
+    if(this.data.descAdd === '' && e.detail.keyCode == 8 && e.detail.value === ''  && this.data.list.length > 0) { // 删除
+      this.delete(this.data.list.length)
       return ;
     }
     this.setData({
@@ -108,7 +124,8 @@ Page({
           text: this.data.descAdd
         }),
         // 重置输入框
-        descAdd: ''
+        descAdd: '',
+        currentIndex: -1
       })
     }
   }
