@@ -100,11 +100,25 @@ Page({
   finish() {
 
   },
+  // 每个输入框的输入
+  input(e) {
+    console.log(e)
+    let index = e.currentTarget.dataset.index
+    // 触发删除的情况
+    if(this.data.list[index].text === '' && e.detail.keyCode == 8 && index > 0 ) {
+      this.delete(index)
+    }else {
+      // 输入的情况
+      this.setData({
+        [`list[${index}].text`]: e.detail.value
+      })
+    }
+  },
   // 增加text
   inputAdd(e) {
     console.log(e.detail)
     // keycode === 8并且输入已为空的情况触发删除
-    if(this.data.descAdd === '' && e.detail.keyCode == 8 && e.detail.value === ''  && this.data.list.length > 0) { // 删除
+    if(this.data.descAdd === '' && e.detail.keyCode == 8  && this.data.list.length > 0) { // 删除
       this.delete(this.data.list.length)
       return ;
     }

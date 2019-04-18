@@ -8,6 +8,7 @@
        auto-height 
        data-index="{{index}}" 
        value="{{item.text}}" 
+       bindinput="input"
        bindblur="blur" ></textarea>
       <image src="{{item.src}}" mode="widthFix" wx:if="{{item.src}}" style="" ></image> 
     </view>
