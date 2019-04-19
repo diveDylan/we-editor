@@ -100,6 +100,12 @@ Page({
   finish() {
 
   },
+  // 输入框点击
+  textareaTap(e) {
+    this.setData({
+      currentIndex: e.currentTarget.dataset.index
+    })
+  },
   // 每个输入框的输入
   input(e) {
     console.log(e)

@@ -9,11 +9,19 @@
        data-index="{{index}}" 
        value="{{item.text}}" 
        bindinput="input"
+       bindtap="textareaTap" 
        bindblur="blur" ></textarea>
       <image src="{{item.src}}" mode="widthFix" wx:if="{{item.src}}" style="" ></image> 
     </view>
    <!---输入区-->
-    <textarea placeholder="请输入" class="base-textarea" placeholder-class="placeholder" bindinput="inputAdd" value="{{descAdd}}"  ></textarea>
+    <textarea
+     placeholder="请输入" 
+     class="base-textarea" 
+     placeholder-class="placeholder" 
+     data-index="-1"  
+     bindinput="inputAdd"
+     bindtap="textareaTap" 
+     value="{{descAdd}}"  ></textarea>
     <!--- 插入图片 -->
     <cover-view class="add-image" bindtap="addImage">
       <cover-image src="../../assets/add_image.png" class="cover-image" mode="aspectFit"></cover-image>
